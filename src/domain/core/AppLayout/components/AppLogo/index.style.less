@@ -1,0 +1,45 @@
+@import '../../../../../shared/styles/variable';
+@import '../../../../../shared/styles/mixin';
+
+.app-logo {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  align-items: center;
+
+  & img {
+    height: 100px;
+    margin-right: 10px;
+
+    [dir=rtl] & {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+  }
+}
+
+.app-logo-name {
+  font-weight: @font-weight-medium;
+  font-size: 24px;
+  display: none;
+
+  @media screen and (min-width: @screen-sm) {
+    display: block;
+  }
+
+  &.white {
+    color: @text-color-white;
+  }
+}
+
+.app-title-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
+  font-size: 20px;
+  color: @primary-color;
+  font-weight: bold;
+  font-style: italic;
+}

@@ -1,0 +1,45 @@
+@import '../../../shared/styles/variable.less';
+
+.confirmPopup {
+  .content {
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
+
+    .title {
+      margin-bottom: 24px;
+      font: normal normal bold 20px/24px RobotoBold;
+    }
+  }
+
+  .confirmTitle {
+    margin: 24px 0;
+    font: normal normal 500 24px/28px RobotoMedium;
+  }
+
+  .action {
+    display: flex;
+    justify-content: center;
+
+    .ant-btn {
+      width: 25%;
+      margin-top: 24px;
+      border-radius: 10px;
+    }
+
+    .cancel {
+      margin: 0 10px;
+      width: 25%;
+
+      .ant-btn {
+        width: 100%;
+        margin-top: 24px;
+        color: @primary-color;
+        font-weight: 500;
+        font-family: RobotoMedium;
+        border: 1.7px solid @primary-color;
+        background: #ffffff;
+        border-radius: 10px;
+      }
+    }
+  }
+}

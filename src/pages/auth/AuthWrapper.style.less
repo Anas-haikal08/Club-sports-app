@@ -1,0 +1,145 @@
+@import '../../shared/styles/variable';
+
+.main-container {
+  padding: 1rem 6rem;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+
+& ::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #b6b6f8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: @primary-color;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.divider-style {
+  background: #000;
+}
+
+.ant-carousel {
+  .slick-dots {
+
+    li {
+      width: 16px;
+      height: 16px;
+
+      button {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        opacity: 0.9;
+      }
+    }
+
+    li.slick-active {
+      width: 16px;
+
+      button {
+        background: #ff2f57;
+      }
+    }
+  }
+} 
+
+.sign-in {
+  overflow: hidden;
+  background: #fff;
+  height: 100vh;
+
+  .login-title {
+    font: normal normal 500 30px/39px RobotoMedium;
+    margin-bottom: 24px;
+    color: @primary-color;
+  }
+
+  .login-admin-title {
+    color: @primary-color;
+    font: normal normal 500 28px/39px RobotoMedium;
+    margin-bottom: 24px;
+  }
+
+  .title-input {
+    font: normal normal normal 18px/24px Roboto;
+  }
+
+  .sign-btn {
+    width: 30%;
+  }
+
+  .rememberMe {
+    font: normal normal normal 18px/22px Roboto;
+    color: gray;
+    margin-top: 24px;
+    margin-bottom: 24px;
+
+    div {
+      color: #7d7d7d;
+      margin: 0 4px;
+    }
+  }
+
+  .rememberMe:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .logo-view {
+    object-fit: fill;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .blackLine {
+    border-bottom: 2px solid black;
+    position: relative;
+    top: 0;
+    left: 20%;
+  }
+
+  .comStyle {
+    margin-top: auto;
+    padding: 0;
+    font-weight: bolder;
+    font-size: 35px;
+  }
+
+  .titlePosition {
+    padding: 10px 0 0 0;
+    font-size: 35px;
+    margin: 10px 0 0 0;
+    font-size: 35px;
+    text-align: end;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .main-container {
+    padding: 1.5rem 3rem;
+  }
+
+}
+
+@media screen and (max-width:767px) {
+  .sign-in {
+    overflow-y: auto;
+  }
+
+  .main-container {
+    padding: 2rem 8rem;
+  }
+
+}

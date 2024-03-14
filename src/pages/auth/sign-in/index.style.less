@@ -1,0 +1,81 @@
+.signin-container {
+  height: 100vh;
+}
+
+.signin-card {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.5rem;
+  border: 1px solid inherit !important;
+  border-radius: 15px;
+  background-color: rgba(30, 29, 36, .16);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+  backdrop-filter: saturate(180%) blur(8px);
+
+  & .ant-card-body {
+    padding: 0;
+
+  }
+
+    &.ant-card-bordered{
+      border: none;
+    }
+}
+
+.signin-title {
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  text-align: center;
+  color: #000000;
+}
+
+.signin-with-google-btn {
+  box-shadow:
+    0px 0px 2.25px rgba(0, 0, 0, 0.084),
+    0px 1.5px 2.25px rgba(0, 0, 0, 0.168);
+}
+
+.form-item-title {
+  width: 100%;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
+  color: #000000 !important;
+}
+
+@media only screen and (max-width: 1199px) {
+}
+
+@media only screen and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 767px) {
+  .signin-container {
+    padding: 2rem;
+  }
+
+  .signin-card {
+    padding: 3rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .signin-container {
+    padding: 1rem;
+  }
+
+  .signin-card {
+    padding: 2rem 1.5rem;
+  }
+}
+.background-image {
+  background-image: url(../../../../public/assets/images/backGroundSignin.jpg);
+  background-size: cover;
+  /* Add other background-related styles if needed */
+}
