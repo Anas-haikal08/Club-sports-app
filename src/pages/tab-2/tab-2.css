@@ -46,3 +46,21 @@
 .verification-status.not-verified {
   background-color: rgb(214, 11, 11);
 }
+
+.actions-column {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.actions-column button {
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.actions-column button:hover {
+  background-color: #0056b3;
+}

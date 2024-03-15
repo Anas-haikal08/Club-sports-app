@@ -78,6 +78,8 @@ const Tab2: React.FC = () => {
     }
   };
 
+
+
   return (
     <AppPageMetadata title={messages['tab2.sideBarName'].toString()}>
       <div className="user-list">
@@ -92,9 +94,7 @@ const Tab2: React.FC = () => {
             <strong>Phone</strong>
             <strong>Verified</strong>
             <strong>Created At</strong>
-            {/* <strong>Updated At</strong>
-            <strong>Deleted At</strong> */}
-            <strong> User Type</strong>
+            <strong>User Type</strong>
             <strong>Actions</strong>
           </li>
           {users.map((user) => (
@@ -107,10 +107,13 @@ const Tab2: React.FC = () => {
                 {user.isVerified ? 'Yes' : 'No'}
               </span>
               <span>{user.createdAt}</span>
-              {/* <span>{user.updatedAt}</span> */}
-              {/* <span>{user.deletedAt}</span> */}
-              <span>{getUserType(user.role_id)}</span>
 
+              <span>{getUserType(user.role_id)}</span>
+              <span className="actions-column">
+                <button>Activate</button>
+                <button>Deactivate</button>
+                <button>Confirm</button>
+              </span>
             </li>
           ))}
         </ul>
