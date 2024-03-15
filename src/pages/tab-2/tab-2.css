@@ -1,8 +1,5 @@
 .user-list {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 5px;
+  margin: 20px;
 }
 
 .page-title {
@@ -10,9 +7,42 @@
   margin-bottom: 10px;
 }
 
-.user-item {
-  margin-bottom: 10px;
+.data-grid {
+  list-style-type: none;
+  padding: 0;
+}
+
+.grid-header {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  background-color: #f2f2f2;
   padding: 10px;
-  background-color: #fff;
   border-radius: 5px;
+  font-weight: bold;
+}
+
+.user-item {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.verification-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: bold;
+  width: 40px;
+}
+
+.verification-status.verified {
+  background-color: rgba(0, 100, 63, 1);
+}
+
+.verification-status.not-verified {
+  background-color: rgb(214, 11, 11);
 }
