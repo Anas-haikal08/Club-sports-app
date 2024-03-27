@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import { useIntl } from 'react-intl';
 import IntlMessages from 'src/domain/utility/IntlMessages';
 import './tab-2.css';
 import { IconBase } from 'react-icons';
+import { CheckOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 interface IUser {
   id: number;
   username: string;
@@ -30,8 +31,7 @@ const Tab2: React.FC = () => {
     ]);
   }, []);
 
-  // Dummy user data
-  const users: IUser[] = [
+  const [users, setUsers] = useState<IUser[]>([
     {
       id: 1,
       username: 'john_doe',
@@ -63,9 +63,9 @@ const Tab2: React.FC = () => {
       createdAt: '2022-03-01',
       updatedAt: '2022-03-02',
       deletedAt: null,
-      role_id: 2,
+      role_id: 3,
     },
-  ];
+  ]);
   const getUserType = (role_id: number): string => {
     if (role_id === 1) {
       return 'Player';
@@ -95,7 +95,6 @@ const Tab2: React.FC = () => {
             <strong>Verified</strong>
             <strong>Created At</strong>
             <strong>User Type</strong>
-            <strong>Actions</strong>
           </li>
           {users.map((user) => (
             <li key={user.id} className="user-item">
@@ -109,11 +108,9 @@ const Tab2: React.FC = () => {
               <span>{user.createdAt}</span>
 
               <span>{getUserType(user.role_id)}</span>
-              <span className="actions-column">
-                <button>Activate</button>
-                <button>Deactivate</button>
-                <button>Confirm</button>
-              </span>
+
+
+
             </li>
           ))}
         </ul>

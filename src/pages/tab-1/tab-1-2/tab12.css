@@ -1,0 +1,79 @@
+.title-card {
+  justify-content: center;
+  font-size: xx-large;
+  font-style: italic;
+  font-weight: bold !important;
+  text-align: center;
+}
+.tab12-card {
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgb(0 81 63 / 75%);
+  padding: 40px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.tab12-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab12-card .form-group {
+  margin-bottom: 24px;
+}
+
+.tab12-card label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.tab12-card input,
+.tab12-card textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tab12-card button {
+  padding: 12px 24px;
+  background-color: rgb(0, 81, 63);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tab12-card button:hover {
+  animation: alternate;
+  background-color: black;
+}
+
+.tab12-card button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* تعديلات جديدة */
+
+.tab12-card input:focus,
+.tab12-card textarea:focus {
+  outline: none;
+  border-color: #0f0f0f; /* تعديل: لون الحدود عند التركيز */
+}
+
+.tab12-card input.error,
+.tab12-card textarea.error {
+  border-color: #ff0000; /* تعديل: لون الحدود عند وجود خطأ */
+}
+
+.tab12-card .error-message {
+  color: #ff0000; /* تعديل: لون رسالة الخطأ */
+  font-size: 14px;
+  margin-top: 4px;
+}
