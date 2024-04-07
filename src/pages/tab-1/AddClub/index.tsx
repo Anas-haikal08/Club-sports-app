@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import './tab12.css'; // استيراد ملف الـ CSS لـ Tab12
+import './AddClub.css'; // استيراد ملف الـ CSS لـ Tab12
 
 interface ITab12Props { }
 
@@ -14,7 +14,7 @@ interface ClubFormData {
   picture: FileList | null;
 }
 
-const Tab12: React.FC<ITab12Props> = (props) => {
+const AddClub: React.FC<ITab12Props> = (props) => {
   const { setBreadcrumb }: any = useBreadcrumbContext();
   const { messages } = useIntl();
   const [formData, setFormData] = useState<ClubFormData>({
@@ -82,4 +82,4 @@ const Tab12: React.FC<ITab12Props> = (props) => {
   );
 };
 
-export default Tab12;
+export default AddClub;

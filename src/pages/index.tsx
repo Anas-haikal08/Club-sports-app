@@ -6,9 +6,9 @@ import React from 'react';
 import Error404 from './errorPages/Error404';
 import { tab1Config } from './tab-1';
 
-const Tab0 = React.lazy(() => import('./tab-0'));
+const HomePage = React.lazy(() => import('./HomePage'));
 
-const Tab2 = React.lazy(() => import('./tab-2'));
+const Users = React.lazy(() => import('./Users'));
 
 const authorizedStructure = {
   fallbackPath: '/sign-in',
@@ -16,12 +16,12 @@ const authorizedStructure = {
   routes: [
     {
       path: '/Home', // Add tab-0 configuration
-      element: <Tab0 />,
+      element: <HomePage />,
     },
     ...tab1Config,
     {
       path: '/users',
-      element: <Tab2 />,
+      element: <Users />,
     },
   ],
 };

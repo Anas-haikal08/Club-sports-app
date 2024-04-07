@@ -3,10 +3,13 @@ import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import { useIntl } from 'react-intl';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import './tab-11.css';
+import './Clubs.css';
+import { Link } from "react-router-dom";
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import DetModal from './modal';
+import backGroundSignin from '../../../../src/assets/images/backGroundSignin.jpg';
+import './elements.css';
 
 interface IClub {
   id: number;
@@ -37,7 +40,7 @@ const ClubList: React.FC = () => {
       name: 'Club A',
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss.',
       location: 'City A',
-      picture: '',
+      picture: backGroundSignin,
       isBlocked: false,
       user_id: 1,
     },
@@ -46,7 +49,7 @@ const ClubList: React.FC = () => {
       name: 'Club B',
       description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
       location: 'City B',
-      picture: 'https://example.com/club-b.jpg',
+      picture: backGroundSignin,
       isBlocked: true,
       user_id: 2,
     },
@@ -55,7 +58,7 @@ const ClubList: React.FC = () => {
       name: 'Club C',
       description: 'At vero eos et accusamus et iusto odio dignissimos.',
       location: 'City C',
-      picture: 'https://example.com/club-c.jpg',
+      picture: backGroundSignin,
       isBlocked: false,
       user_id: 3,
     },
@@ -77,6 +80,12 @@ const ClubList: React.FC = () => {
         <h1 className="page-title">
           <IntlMessages id="tab1.tab11" />
         </h1>
+
+        <div className="container">
+          <Link to="/Clubs-Management/Add-Club">
+            <Button className="btn">Add Club +</Button>
+          </Link>
+        </div>
         <div className="data-grid">
           <div className="grid-header">
             <div>ID</div>

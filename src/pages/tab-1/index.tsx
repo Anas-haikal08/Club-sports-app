@@ -1,18 +1,18 @@
 import React from 'react';
-import {RoutePermittedRole} from '../../shared/constants/AppEnums';
+import { RoutePermittedRole } from '../../shared/constants/AppEnums';
 
-const Tab11 = React.lazy(() => import('./tab-1-1'));
-const Tab12 = React.lazy(() => import('./tab-1-2'));
- 
+const Clubs = React.lazy(() => import('./Clubs'));
+const AddClub = React.lazy(() => import('./AddClub'));
+
 export const tab1Config = [
   {
     permittedRole: RoutePermittedRole.user,
     path: '/Clubs-Management/Clubs',
-    element: <Tab11 />,
+    element: <Clubs />,
   },
   {
     permittedRole: RoutePermittedRole.user,
     path: '/Clubs-Management/Add-Club',
-    element: <Tab12 />,
+    element: <AddClub />,
   },
 ];

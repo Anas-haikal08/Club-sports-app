@@ -3,7 +3,7 @@ import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import { useIntl } from 'react-intl';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import './tab-2.css';
+import './users.css';
 import { IconBase } from 'react-icons';
 import { CheckOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 interface IUser {

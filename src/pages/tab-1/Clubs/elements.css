@@ -1,0 +1,25 @@
+.container {
+  text-align: right;
+}
+
+.btn {
+  /* Add additional styling for the button here */
+  padding: 12px;
+  color: white;
+  background-color: rgb(0, 81, 63);
+  font-style: normal;
+  font-weight: 500;
+
+  line-height: 22px;
+  border-color: black;
+  border-width: 2.5px;
+  /* display: flex; */
+  justify-content: center;
+  border-radius: 7.5px;
+}
+.btn:hover {
+  background-color: black !important;
+}
+.btn::after {
+  background-color: rgb(0, 81, 63) !important;
+}

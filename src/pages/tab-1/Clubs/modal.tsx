@@ -40,7 +40,7 @@ const DetModal: React.FC<DetModalProps> = ({ club, closeModal }) => {
                         <p>Description: {club.description}</p>
                         <p>Location: {club.location}</p>
                         <img src={club.picture} alt={club.name} />
-                        <p>User ID: {club.user_id}</p>
+
                     </div>
                     <div className="modal-footer">
 
