@@ -3,8 +3,7 @@ import { useIntl } from 'react-intl';
 import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import './AddClub.css'; // استيراد ملف الـ CSS لـ Tab12
-
+import './AddClub.css';
 interface ITab12Props { }
 
 interface ClubFormData {
