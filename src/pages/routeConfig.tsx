@@ -60,6 +60,14 @@ const routesConfig = [
     type: 'item',
     path: '/plans',
     permissionKey: CUSTOMER_ROLES.Administrators,
+  }, {
+    id: 'Subscriptions',
+    title: 'Subscriptions',
+    messageId: 'Subscriptions.sideBarName',
+    icon: <FaMoneyCheckDollar />,
+    type: 'item',
+    path: '/subscriptions',
+    permissionKey: CUSTOMER_ROLES.Administrators,
   },
   {
     id: 'Transactions',

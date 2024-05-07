@@ -10,7 +10,11 @@ interface IPlan {
     description: string;
 }
 
-const Addmodal: React.FC = () => {
+interface IAddModalProps {
+    onAddPlan: (newPlan: IPlan) => void;
+}
+
+const Addmodal: React.FC<IAddModalProps> = ({ onAddPlan }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [form] = Form.useForm();
 
@@ -22,9 +26,7 @@ const Addmodal: React.FC = () => {
     const handleModalOk = () => {
         form.validateFields().then((values: IPlan) => {
             setIsModalVisible(false);
-            // Handle the logic for saving the new plan
-            // For example, make an API request to save the plan data
-            console.log('New plan:', values);
+            onAddPlan(values); // Invoke the onAddPlan function and pass the new plan
             form.resetFields();
         });
     };
@@ -36,7 +38,6 @@ const Addmodal: React.FC = () => {
 
     return (
         <div className="plans-page">
-            <h1>Plans</h1>
             <Button className="Addbtn" onClick={handleAddPlan}>
                 Add New Plan
             </Button>

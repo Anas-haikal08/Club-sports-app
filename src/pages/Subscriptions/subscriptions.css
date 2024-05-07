@@ -1,0 +1,59 @@
+.subscriptions-page {
+  margin: 20px;
+}
+
+.page-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.subscriptions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.subscriptions-table th,
+.subscriptions-table td {
+  padding: 10px 20px;
+  text-align: left;
+  padding: 30px;
+}
+
+.subscriptions-table th {
+  background-color: #f2f2f2;
+  border-radius: 15px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.subscriptions-table td {
+  background-color: #ffffff;
+  border-bottom: 1px outset #ccc;
+}
+
+.add-btn {
+  padding: 12px;
+  color: white;
+  background-color: rgb(0, 81, 63);
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px;
+  margin-left: 1210px;
+  border-color: black;
+  border-width: 2.5px;
+  justify-content: center;
+  border-radius: 7.5px;
+}
+
+.add-btn:hover {
+  background-color: black;
+}
+
+.add-btn:focus,
+.add-btn:active {
+  background-color: rgb(0, 81, 63);
+}
+
+.add-btn.clicked {
+  background-color: rgb(0, 81, 63);
+}
