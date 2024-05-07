@@ -14,29 +14,30 @@
 
 .grid-header {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background-color: #f2f2f2;
   padding: 40px;
   border-radius: 15px;
+  width: 100%;
+  height: 50px;
+  margin-right: 60px;
   font-size: larger;
   font-weight: bold;
-  width: 100%; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
 }
 .user-item {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   background-color: #f2f2f2;
   padding: 40px;
   border-radius: 15px;
   font-weight: 200;
-  width: 100%; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
+  width: 100%;
+  height: 50px;
 }
 
 .user-item {
   background-color: #ffffff;
-  border-bottom: outset;
+  border-bottom: 1px outset #ccc;
 }
 
 .verification-status {

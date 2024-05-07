@@ -3,6 +3,8 @@ import { FiUsers } from 'react-icons/fi';
 import { CUSTOMER_ROLES } from 'src/shared/constants/AppConst';
 import { FcStatistics } from "react-icons/fc";
 import { TbBuildingStadium } from "react-icons/tb";
+import { GrTransaction } from "react-icons/gr";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 
 
 const routesConfig = [
@@ -48,6 +50,24 @@ const routesConfig = [
     icon: <FiUsers />,
     type: 'item',
     path: '/users',
+    permissionKey: CUSTOMER_ROLES.Administrators,
+  },
+  {
+    id: 'Plans',
+    title: 'Plans',
+    messageId: 'Plans.sideBarName',
+    icon: <FaMoneyCheckDollar />,
+    type: 'item',
+    path: '/plans',
+    permissionKey: CUSTOMER_ROLES.Administrators,
+  },
+  {
+    id: 'Transactions',
+    title: 'Transactions',
+    messageId: 'trans.sideBarName',
+    icon: <GrTransaction />,
+    type: 'item',
+    path: '/transactions',
     permissionKey: CUSTOMER_ROLES.Administrators,
   },
 ];

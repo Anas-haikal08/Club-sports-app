@@ -90,6 +90,8 @@
   "validation.emailRule": "Please enter a valid email address!",
   "tab0.sideBarName": "Home",
   "tab1.sideBarName": "Clubs management",
+  "trans.sideBarName": "Transactions",
+  "Plans.sideBarName": "Plans",
   "tab2.sideBarName": "Users",
   "tab1.tab11": "Clubs",
   "tab1.tab12": "Add Club",

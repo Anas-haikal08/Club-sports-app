@@ -10,6 +10,10 @@ const HomePage = React.lazy(() => import('./HomePage'));
 
 const Users = React.lazy(() => import('./Users'));
 
+const Transactions = React.lazy(() => import('./transactions'));
+
+const Plans = React.lazy(() => import('./Plans'));
+
 const authorizedStructure = {
   fallbackPath: '/sign-in',
   unAuthorizedComponent: <Error403 />,
@@ -22,6 +26,14 @@ const authorizedStructure = {
     {
       path: '/users',
       element: <Users />,
+    },
+    {
+      path: '/transactions',
+      element: <Transactions />,
+    },
+    {
+      path: '/plans',
+      element: <Plans />,
     },
   ],
 };
