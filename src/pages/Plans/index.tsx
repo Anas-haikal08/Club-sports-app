@@ -161,6 +161,7 @@ const Plans: React.FC = () => {
                             rules={[
                                 { required: true, message: 'Please enter the description' },
                             ]}>
+
                             <Input.TextArea />
                         </Form.Item>
                     </Form>

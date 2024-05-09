@@ -5,6 +5,7 @@ import { FcStatistics } from "react-icons/fc";
 import { TbBuildingStadium } from "react-icons/tb";
 import { GrTransaction } from "react-icons/gr";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { PiSoccerBallDuotone } from "react-icons/pi";
 
 
 const routesConfig = [
@@ -50,6 +51,15 @@ const routesConfig = [
     icon: <FiUsers />,
     type: 'item',
     path: '/users',
+    permissionKey: CUSTOMER_ROLES.Administrators,
+  },
+  {
+    id: 'Sports',
+    title: 'Sports',
+    messageId: 'Sports.sideBarName',
+    icon: <PiSoccerBallDuotone />,
+    type: 'item',
+    path: '/sports',
     permissionKey: CUSTOMER_ROLES.Administrators,
   },
   {

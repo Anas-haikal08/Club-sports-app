@@ -5,6 +5,7 @@ import Error403 from './errorPages/Error403';
 import React from 'react';
 import Error404 from './errorPages/Error404';
 import { tab1Config } from './tab-1';
+import Sports from './Sports';
 
 const HomePage = React.lazy(() => import('./HomePage'));
 
@@ -28,6 +29,10 @@ const authorizedStructure = {
     {
       path: '/users',
       element: <Users />,
+    },
+    {
+      path: '/sports',
+      element: <Sports />,
     },
     {
       path: '/transactions',
