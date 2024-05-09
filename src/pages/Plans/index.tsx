@@ -41,7 +41,7 @@ const Plans: React.FC = () => {
     useEffect(() => {
         setBreadcrumb([
             {
-                text: <IntlMessages id="Plans.sideBarName" />,
+                text: <IntlMessages id='Plans.sideBarName' />,
                 url: '/Clubs-Management/Plans',
             },
         ]);
@@ -52,7 +52,7 @@ const Plans: React.FC = () => {
     };
 
     const handleEditPlan = (index: number) => {
-        setEditPlanIndex(index);
+        setEditPlanIndex(index === editPlanIndex ? null : index);
     };
 
     console.log('====================================');
@@ -62,24 +62,26 @@ const Plans: React.FC = () => {
     console.log(form.getFieldsValue());
     console.log('====================================');
     const handleSavePlan = (index: number) => {
-        form.validateFields().then((values: any) => {
-            const updatedPlan = {
-                ...plans[index],
-                name: values[`name-${index}`],
-                plan_duration: values[`plan_duration-${index}`],
-                price: values[`price-${index}`],
-                description: values[`description-${index}`],
-            };
+        form
+            .validateFields()
+            .then((values: any) => {
+                const updatedPlan = {
+                    ...plans[index],
+                    name: values[`name-${index}`],
+                    plan_duration: values[`plan_duration-${index}`],
+                    price: values[`price-${index}`],
+                    description: values[`description-${index}`],
+                };
 
+                const updatedPlans = [...plans];
+                updatedPlans[index] = updatedPlan;
+                setPlans(updatedPlans);
 
-            const updatedPlans = [...plans];
-            updatedPlans[index] = updatedPlan;
-            setPlans(updatedPlans);
-
-            setEditPlanIndex(null);
-        }).catch((error: any) => {
-            console.log('Validation failed:', error);
-        });
+                setEditPlanIndex(null);
+            })
+            .catch((error: any) => {
+                console.log('Validation failed:', error);
+            });
     };
 
     const handleModalOk = () => {
@@ -87,7 +89,7 @@ const Plans: React.FC = () => {
             const { id } = values;
 
             // Check if the ID already exists
-            const isDuplicateId = plans.some(plan => plan.id === id);
+            const isDuplicateId = plans.some((plan) => plan.id === id);
             if (isDuplicateId) {
                 form.setFields([
                     {
@@ -110,64 +112,61 @@ const Plans: React.FC = () => {
 
     return (
         <AppPageMetadata title={messages['Plans.sideBarName'].toString()}>
-            <div className="plans-page">
-                <h1 className="page-title">
-                    <IntlMessages id="Plans.sideBarName" />
-                </h1>
+            <div className='plans-page'>
+                <div className='TitleButtonWrapper'>
+                    <h1 className='page-title'>
+                        <IntlMessages id='Plans.sideBarName' />
+                    </h1>
 
-                <div className="add-plan-button-container">
-                    <Button className="Addbtn" onClick={() => setIsModalVisible(true)}>
+                    <Button className='Addbtn' onClick={() => setIsModalVisible(true)}>
                         Add New Plan
                     </Button>
                 </div>
-
                 <Modal
-                    title="Add Plan"
+                    title='Add Plan'
                     visible={isModalVisible}
                     onOk={handleModalOk}
                     onCancel={handleModalCancel}
-                    destroyOnClose={true}
-                >
-                    <Form form={form} layout="vertical">
+                    destroyOnClose={true}>
+                    <Form form={form} layout='vertical'>
                         <Form.Item
-                            name="id"
-                            label="ID"
-                            rules={[{ required: true, message: 'Please enter the ID' }]}
-                        >
-                            <Input type="number" />
+                            name='id'
+                            label='ID'
+                            rules={[{ required: true, message: 'Please enter the ID' }]}>
+                            <Input type='number' />
                         </Form.Item>
                         <Form.Item
-                            name="name"
-                            label="Name"
-                            rules={[{ required: true, message: 'Please enter the name' }]}
-                        >
+                            name='name'
+                            label='Name'
+                            rules={[{ required: true, message: 'Please enter the name' }]}>
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            name="plan_duration"
-                            label="Plan Duration"
-                            rules={[{ required: true, message: 'Please enter the plan duration' }]}
-                        >
+                            name='plan_duration'
+                            label='Plan Duration'
+                            rules={[
+                                { required: true, message: 'Please enter the plan duration' },
+                            ]}>
                             <Input />
                         </Form.Item>
                         <Form.Item
-                            name="price"
-                            label="Price"
-                            rules={[{ required: true, message: 'Please enter the price' }]}
-                        >
-                            <Input type="number" />
+                            name='price'
+                            label='Price'
+                            rules={[{ required: true, message: 'Please enter the price' }]}>
+                            <Input type='number' />
                         </Form.Item>
                         <Form.Item
-                            name="description"
-                            label="Description"
-                            rules={[{ required: true, message: 'Please enter the description' }]}
-                        >
+                            name='description'
+                            label='Description'
+                            rules={[
+                                { required: true, message: 'Please enter the description' },
+                            ]}>
                             <Input.TextArea />
                         </Form.Item>
                     </Form>
                 </Modal>
 
-                <table className="plans-table">
+                <table className='plans-table'>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -178,49 +177,123 @@ const Plans: React.FC = () => {
                             <th>Actions</th>
                         </tr>
                     </thead>
+                    {/* <tbody>
+            {plans.map((plan, index) => (
+              <tr key={plan.id}>
+                <td>{plan.id}</td>
+                <td>
+                  {editPlanIndex === index ? (
+                    <Input name={`name-${index}`} defaultValue={plan.name} />
+                  ) : (
+                    plan.name
+                  )}
+                </td>
+                <td>
+                  {editPlanIndex === index ? (
+                    <Input
+                      name={`plan_duration-${index}`}
+                      defaultValue={plan.plan_duration}
+                    />
+                  ) : (
+                    plan.plan_duration
+                  )}
+                </td>
+                <td>
+                  {editPlanIndex === index ? (
+                    <Input name={`price-${index}`} defaultValue={plan.price} />
+                  ) : (
+                    plan.price
+                  )}
+                </td>
+                <td>
+                  {editPlanIndex === index ? (
+                    <Input
+                      name={`description-${index}`}
+                      defaultValue={plan.description}
+                    />
+                  ) : (
+                    plan.description
+                  )}
+                </td>
+                <td>
+                  {editPlanIndex === index ? (
+                    <Button
+                      type='primary'
+                      onClick={() => handleSavePlan(index)}>
+                      Save
+                    </Button>
+                  ) : (
+                    <Button onClick={() => handleEditPlan(index)}>Edit</Button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody> */}
                     <tbody>
-                        {plans.map((plan, index) => (
-                            <tr key={plan.id}>
-                                <td>{plan.id}</td>
-                                <td>
-                                    {editPlanIndex === index ? (
-                                        <Input name={`name-${index}`} defaultValue={plan.name} />
-                                    ) : (
-                                        plan.name
-                                    )}
-                                </td>
-                                <td>
-                                    {editPlanIndex === index ? (
-                                        <Input name={`plan_duration-${index}`} defaultValue={plan.plan_duration} />
-                                    ) : (
-                                        plan.plan_duration
-                                    )}
-                                </td>
-                                <td>
-                                    {editPlanIndex === index ? (
-                                        <Input name={`price-${index}`} defaultValue={plan.price} />
-                                    ) : (
-                                        plan.price
-                                    )}
-                                </td>
-                                <td>
-                                    {editPlanIndex === index ? (
-                                        <Input name={`description-${index}`} defaultValue={plan.description} />
-                                    ) : (
-                                        plan.description
-                                    )}
-                                </td>
-                                <td>
-                                    {editPlanIndex === index ? (
-                                        <Button type="primary" onClick={() => handleSavePlan(index)}>
-                                            Save
-                                        </Button>
-                                    ) : (
-                                        <Button onClick={() => handleEditPlan(index)}>Edit</Button>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
+                        <Form form={form} component={false}>
+                            {plans.map((plan, index) => (
+                                <tr key={plan.id}>
+                                    <td>{plan.id}</td>
+                                    <td>
+                                        {editPlanIndex === index ? (
+                                            <Form.Item
+                                                name={`name-${index}`}
+                                                initialValue={plan.name}>
+                                                <Input />
+                                            </Form.Item>
+                                        ) : (
+                                            plan.name
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editPlanIndex === index ? (
+                                            <Form.Item
+                                                name={`plan_duration-${index}`}
+                                                initialValue={plan.plan_duration}>
+                                                <Input />
+                                            </Form.Item>
+                                        ) : (
+                                            plan.plan_duration
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editPlanIndex === index ? (
+                                            <Form.Item
+                                                name={`price-${index}`}
+                                                initialValue={plan.price}>
+                                                <Input type='number' />
+                                            </Form.Item>
+                                        ) : (
+                                            plan.price
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editPlanIndex === index ? (
+                                            <Form.Item
+                                                name={`description-${index}`}
+                                                initialValue={plan.description}>
+                                                <Input.TextArea />
+                                            </Form.Item>
+                                        ) : (
+                                            plan.description
+                                        )}
+                                    </td>
+                                    <td>
+                                        {editPlanIndex === index ? (
+                                            <Button
+                                                type='primary'
+                                                onClick={() => handleSavePlan(index)}>
+                                                Save
+                                            </Button>
+                                        ) : (
+                                            <Button onClick={() => handleEditPlan(index)}>
+                                                Edit
+                                            </Button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
+                        </Form>
                     </tbody>
                 </table>
             </div>

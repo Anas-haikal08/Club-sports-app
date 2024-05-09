@@ -1,10 +1,13 @@
 .plans-page {
   margin: 20px;
+  display: grid;
+  gap: 1rem;
 }
 
 .page-title {
   font-size: 24px;
-  margin-bottom: 10px;
+  line-height: normal;
+  margin: 0 !important;
 }
 
 .plans-table {
@@ -31,6 +34,15 @@
   background-color: #ffffff;
   border-bottom: 1px outset #ccc;
 }
+
+.TitleButtonWrapper {
+  display: grid;
+  grid-auto-flow: column;
+  place-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
 .Addbtn {
   padding: 12px;
   color: white;
@@ -38,10 +50,8 @@
   font-style: normal;
   font-weight: 500;
   line-height: 22px;
-  margin-left: 1210px;
   border-color: black;
   border-width: 2.5px;
-  justify-content: center;
   border-radius: 7.5px;
 }
 
