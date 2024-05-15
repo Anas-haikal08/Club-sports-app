@@ -16,7 +16,7 @@ const AppSidebar = ({isCollapsed}) => {
       collapsed={isCollapsed}>
       <Fragment>
         <div className='logo-sidebar'>
-          <img src='/assets/images/logo-white.svg' alt='logo' />
+          <img src='/assets/images/logos.png' alt='logo' />
         </div>
       </Fragment>
       <SimpleBarReact className={'app-mini-sidebar-scrollbar'}>

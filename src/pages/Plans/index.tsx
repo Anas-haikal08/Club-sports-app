@@ -133,13 +133,13 @@ const Plans: React.FC = () => {
                             name='id'
                             label='ID'
                             rules={[{ required: true, message: 'Please enter the ID' }]}>
-                            <Input type='number' />
+                            <Input allowClear type='number' />
                         </Form.Item>
                         <Form.Item
                             name='name'
                             label='Name'
                             rules={[{ required: true, message: 'Please enter the name' }]}>
-                            <Input />
+                            <Input allowClear />
                         </Form.Item>
                         <Form.Item
                             name='plan_duration'
@@ -147,13 +147,13 @@ const Plans: React.FC = () => {
                             rules={[
                                 { required: true, message: 'Please enter the plan duration' },
                             ]}>
-                            <Input />
+                            <Input allowClear />
                         </Form.Item>
                         <Form.Item
                             name='price'
                             label='Price'
                             rules={[{ required: true, message: 'Please enter the price' }]}>
-                            <Input type='number' />
+                            <Input allowClear type='number' />
                         </Form.Item>
                         <Form.Item
                             name='description'
@@ -162,7 +162,7 @@ const Plans: React.FC = () => {
                                 { required: true, message: 'Please enter the description' },
                             ]}>
 
-                            <Input.TextArea />
+                            <Input.TextArea allowClear />
                         </Form.Item>
                     </Form>
                 </Modal>
@@ -240,7 +240,7 @@ const Plans: React.FC = () => {
                                             <Form.Item
                                                 name={`name-${index}`}
                                                 initialValue={plan.name}>
-                                                <Input />
+                                                <Input allowClear />
                                             </Form.Item>
                                         ) : (
                                             plan.name
@@ -251,7 +251,7 @@ const Plans: React.FC = () => {
                                             <Form.Item
                                                 name={`plan_duration-${index}`}
                                                 initialValue={plan.plan_duration}>
-                                                <Input />
+                                                <Input allowClear />
                                             </Form.Item>
                                         ) : (
                                             plan.plan_duration
@@ -262,7 +262,7 @@ const Plans: React.FC = () => {
                                             <Form.Item
                                                 name={`price-${index}`}
                                                 initialValue={plan.price}>
-                                                <Input type='number' />
+                                                <Input allowClear type='number' />
                                             </Form.Item>
                                         ) : (
                                             plan.price
@@ -273,7 +273,7 @@ const Plans: React.FC = () => {
                                             <Form.Item
                                                 name={`description-${index}`}
                                                 initialValue={plan.description}>
-                                                <Input.TextArea />
+                                                <Input.TextArea allowClear />
                                             </Form.Item>
                                         ) : (
                                             plan.description
