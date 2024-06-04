@@ -1,0 +1,40 @@
+.layout {
+  background: #f0f2f5; /* Light grey background for better contrast */
+}
+
+.site-layout-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.club-card {
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.club-card img {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.club-title {
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+.club-description {
+  margin: 16px 0;
+}
+
+.club-location-label {
+  display: block;
+  margin-top: 16px;
+  font-weight: bold;
+}
+
+.club-location {
+  display: block;
+  margin-top: 8px;
+}

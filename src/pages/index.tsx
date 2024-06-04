@@ -6,8 +6,8 @@ import React from 'react';
 import Error404 from './errorPages/Error404';
 import { tab1Config } from './tab-1';
 import Sports from './Sports';
+import MyClub from './MyClub/myClub';
 
-const HomePage = React.lazy(() => import('./HomePage'));
 
 const Users = React.lazy(() => import('./Users'));
 
@@ -22,8 +22,8 @@ const authorizedStructure = {
   unAuthorizedComponent: <Error403 />,
   routes: [
     {
-      path: '/Home', // Add tab-0 configuration
-      element: <HomePage />,
+      path: '/MyClub', // Add tab-0 configuration
+      element: <MyClub />,
     },
     ...tab1Config,
     {

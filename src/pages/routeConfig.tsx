@@ -15,7 +15,7 @@ const routesConfig = [
     messageId: 'tab0.sideBarName',
     icon: <FcStatistics />,
     type: 'item',
-    path: '/My Club',
+    path: 'MyClub',
     permissionKey: CUSTOMER_ROLES.Administrators,
   },
   {
