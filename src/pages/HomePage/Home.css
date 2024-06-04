@@ -6,3 +6,27 @@
   display: flex;
   margin: 20px;
 }
+
+.admin-wallet {
+  color: white;
+  float: right;
+  margin-right: 20px;
+  background: rgb(0, 81, 63);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-wallet-title {
+  font-size: 1.2rem;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.admin-wallet-balance {
+  color: white;
+  font-size: 1.2rem;
+}
