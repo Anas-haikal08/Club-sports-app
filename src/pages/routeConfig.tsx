@@ -10,12 +10,12 @@ import { PiSoccerBallDuotone } from "react-icons/pi";
 
 const routesConfig = [
   {
-    id: 'Home',
-    title: 'Home',
+    id: 'My Club',
+    title: 'My Club',
     messageId: 'tab0.sideBarName',
     icon: <FcStatistics />,
     type: 'item',
-    path: '/Home',
+    path: '/My Club',
     permissionKey: CUSTOMER_ROLES.Administrators,
   },
   {

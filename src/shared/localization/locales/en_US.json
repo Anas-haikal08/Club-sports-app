@@ -88,7 +88,7 @@
   "validation.reEnterPassword": "Please re-enter password!",
   "validation.passwordRule": "Use 12 or more characters containing uppercase letters, lowercase letters, numbers, and symbols.",
   "validation.emailRule": "Please enter a valid email address!",
-  "tab0.sideBarName": "Home",
+  "tab0.sideBarName": "My Club",
   "tab1.sideBarName": "Clubs management",
   "trans.sideBarName": "Transactions",
   "Plans.sideBarName": "Plans",
