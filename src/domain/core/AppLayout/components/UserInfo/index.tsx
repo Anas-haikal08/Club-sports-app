@@ -1,16 +1,16 @@
-import {Fragment} from 'react';
+import { Fragment } from 'react';
 import clsx from 'clsx';
-import {Avatar, Dropdown, List} from 'antd';
-import {FaChevronDown} from 'react-icons/fa';
+import { Avatar, Dropdown, List } from 'antd';
+import { FaChevronDown } from 'react-icons/fa';
 import './index.style.less';
-import {useThemeContext} from '../../../../utility/AppContextProvider/ThemeContextProvider';
+import { useThemeContext } from '../../../../utility/AppContextProvider/ThemeContextProvider';
 import IntlMessages from '../../../../utility/IntlMessages';
-import {FiUser} from 'react-icons/fi';
-import {useDispatch} from 'react-redux';
-import {setVisibleLogout} from 'src/domain/app/redux/auth/auth-slice';
+import { FiUser } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { setVisibleLogout } from 'src/domain/app/redux/auth/auth-slice';
 
 const UserInfo = () => {
-  const {themeMode}: any = useThemeContext();
+  const { themeMode }: any = useThemeContext();
   const dispatch = useDispatch();
 
   const menu = (
@@ -47,7 +47,7 @@ const UserInfo = () => {
                   className={clsx('cr-user-name', {
                     light: themeMode === 'light',
                   })}>
-                  Admin
+                  Club
                 </h3>
                 <span className='cr-user-arrow'>
                   <FaChevronDown />

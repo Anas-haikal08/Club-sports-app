@@ -1,6 +1,6 @@
 import urlJoin from 'url-join';
 
-export const initialUrl = '/Home'; // this url will open after login
+export const initialUrl = '/MyClub'; // this url will open after login
 export const AUTH_TOKEN: string = 'app-auth-token';
 export const Default_Language: string = 'app-language';
 export const FCM_TOKEN_KEY = 'fcm-token';

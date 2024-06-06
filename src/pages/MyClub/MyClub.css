@@ -1,40 +1,74 @@
+/* MyClub.css */
+
 .layout {
-  background: #f0f2f5; /* Light grey background for better contrast */
+  min-height: 100vh;
+  background-color: #f0f2f5;
 }
 
 .site-layout-content {
   background: #fff;
   padding: 24px;
-  min-height: 280px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin: 16px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .club-card {
   text-align: center;
+  padding: 24px;
   border-radius: 8px;
-  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
 }
 
-.club-card img {
-  border-bottom: 1px solid #f0f0f0;
+.club-card .ant-card-body {
+  padding: 0;
 }
 
 .club-title {
-  margin-top: 16px;
+  margin-top: 24px;
+  font-size: 24px;
   font-weight: bold;
+  color: #1890ff;
 }
 
 .club-description {
-  margin: 16px 0;
+  margin-top: 16px;
+  font-size: 16px;
+  color: #595959;
 }
 
 .club-location-label {
-  display: block;
-  margin-top: 16px;
+  margin-top: 24px;
+  font-size: 16px;
   font-weight: bold;
+  color: #8c8c8c;
 }
 
 .club-location {
   display: block;
-  margin-top: 8px;
+  margin-top: 4px;
+  font-size: 16px;
+  color: #595959;
+}
+
+.edit-buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.edit-buttons > button {
+  width: 120px;
+  background-color: rgb(0, 81, 63);
+}
+
+.ant-input,
+.ant-input-textarea {
+  margin-top: 16px;
+}
+
+.ant-input[type='file'] {
+  margin-top: 16px;
+  text-align: left;
 }

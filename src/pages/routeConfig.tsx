@@ -10,7 +10,7 @@ import { PiSoccerBallDuotone } from "react-icons/pi";
 
 const routesConfig = [
   {
-    id: 'My Club',
+    id: 'MyClub',
     title: 'My Club',
     messageId: 'tab0.sideBarName',
     icon: <FcStatistics />,

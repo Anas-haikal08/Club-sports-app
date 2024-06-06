@@ -6,8 +6,8 @@ import React from 'react';
 import Error404 from './errorPages/Error404';
 import { tab1Config } from './tab-1';
 import Sports from './Sports';
-import MyClub from './MyClub/myClub';
 
+const MyClub = React.lazy(() => import('./MyClub/myClub'));
 
 const Users = React.lazy(() => import('./Users'));
 
