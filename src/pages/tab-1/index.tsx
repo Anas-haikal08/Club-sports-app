@@ -7,12 +7,12 @@ const AddClub = React.lazy(() => import('./AddClub'));
 export const tab1Config = [
   {
     permittedRole: RoutePermittedRole.user,
-    path: '/Clubs-Management/Clubs',
+    path: '/Club-Management/Club',
     element: <Clubs />,
   },
   {
     permittedRole: RoutePermittedRole.user,
-    path: '/Clubs-Management/Add-Club',
+    path: '/Club-Management/Add-Field',
     element: <AddClub />,
   },
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Layout} from 'antd';
-import {AppSuspense} from '../../index';
+import { Layout } from 'antd';
+import { AppSuspense } from '../../index';
 import {
   anonymousStructure,
   authorizedStructure,
@@ -9,21 +9,21 @@ import {
 import AppErrorBoundary from '../AppErrorBoundary';
 import './index.style.less';
 import GenerateRoutes from '../../utility/RouteGenerator';
-import {Navigate, Route, Routes} from 'react-router-dom';
-import {AUTH_TOKEN, initialUrl} from '../../../shared/constants/AppConst';
-import {useCookies} from 'react-cookie';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { initialUrl } from '../../../shared/constants/AppConst';
+import { useAuth } from 'src/pages/auth/context/AuthContext';  // Import the useAuth hook
 
-const {Content} = Layout;
+const { Content } = Layout;
 
 const AppContentView = () => {
-  const [cookies] = useCookies([AUTH_TOKEN]);
+  const { isAuthenticated } = useAuth(); // Use the isAuthenticated value from AuthContext
 
   return (
     <Content className='main-content-view'>
       <AppSuspense>
         <AppErrorBoundary>
           {GenerateRoutes({
-            isAuthenticated: !!cookies[AUTH_TOKEN],
+            isAuthenticated: isAuthenticated, // Use isAuthenticated from AuthContext
             userRole: undefined,
             unAuthorizedStructure,
             authorizedStructure,

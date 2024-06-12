@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import defaultConfig from './defaultConfig';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ export const useLocaleContext = () => useContext(LocaleContext);
 
 export const useLocaleActionsContext = () => useContext(LocaleActionsContext);
 
-const LocaleContextProvider = ({children}: any) => {
+const LocaleContextProvider = ({ children }: any) => {
   const [locale, updateLocale] = useState(defaultConfig.locale);
 
   return (

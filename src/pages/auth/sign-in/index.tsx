@@ -1,24 +1,22 @@
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import './index.style.less';
 import { Card, Col, Row } from 'antd';
 import IntlMessages from 'src/domain/utility/IntlMessages';
 import Button from 'src/shared/components/button';
-import { GoogleIcon } from 'src/shared/components/icons';
 import { Form, Formik } from 'formik';
 import FormItem from 'src/shared/components/form-item';
 import { Input, InputPassword } from 'src/shared/components/input';
 import { signInSchema } from './schema';
-import { useState } from 'react';
 import Checkbox from 'src/shared/components/checkbox';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import { AUTH_TOKEN } from 'src/shared/constants/AppConst';
+import { useAuth } from 'src/pages/auth/context/AuthContext'; // Import the AuthContext
 
 const SignIn = () => {
   const { messages } = useIntl();
   const navigate = useNavigate();
-  const [, setCookies] = useCookies()
+  const { login } = useAuth(); // Use the AuthContext
   const [initialValues] = useState({
     email: '',
     password: '',
@@ -27,10 +25,8 @@ const SignIn = () => {
   const handleSubmit = async (values: any, { setSubmitting }: any) => {
     try {
       setSubmitting(true);
-      console.log(values);
-      setCookies(AUTH_TOKEN, values.email, {
-        path: "/"
-      })
+      await login(values.email, values.password);
+      navigate('/'); // Navigate to home page or dashboard
     } catch (error) {
       console.error(error);
     } finally {
@@ -41,6 +37,7 @@ const SignIn = () => {
   const handleForgotPassword = () => {
     navigate('/forgot-password');
   };
+
   return (
     <AppPageMetadata title={messages['auth.signin'].toString()}>
       <div className='signin-container background-image'>
@@ -53,16 +50,23 @@ const SignIn = () => {
                     <IntlMessages id='auth.signin.title' />
                   </h3>
                 </Col>
-                {/* */}
                 <Col span={24}>
-                  <Formik enableReinitialize initialValues={initialValues} onSubmit={handleSubmit} validationSchema={signInSchema(messages)} validateOnChange={false} validateOnBlur={false}>
+                  <Formik
+                    enableReinitialize
+                    initialValues={initialValues}
+                    onSubmit={handleSubmit}
+                    validationSchema={signInSchema(messages)}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                  >
                     {({ handleSubmit }: any) => {
                       return (
                         <Form>
                           <Row
                             className='fullContent'
                             gutter={[0, 20]}
-                            justify='center'>
+                            justify='center'
+                          >
                             <Col span={24}>
                               <FormItem
                                 layoutHorizontal
@@ -80,9 +84,7 @@ const SignIn = () => {
                                 type='password'
                                 classNameTitle='form-item-title'
                                 fieldCommponent={
-                                  <InputPassword
-                                    autoComplete={'new-password'}
-                                  />
+                                  <InputPassword autoComplete={'new-password'} />
                                 }
                               />
                             </Col>
@@ -91,7 +93,8 @@ const SignIn = () => {
                               <Row
                                 gutter={[20, 10]}
                                 justify='space-around'
-                                align='middle'>
+                                align='middle'
+                              >
                                 <Col>
                                   <FormItem
                                     layoutHorizontal
@@ -108,7 +111,8 @@ const SignIn = () => {
                                   <Button
                                     type='link'
                                     color='black'
-                                    onClick={handleForgotPassword}>
+                                    onClick={handleForgotPassword}
+                                  >
                                     <IntlMessages id='auth.forgotPassword' />
                                   </Button>
                                 </Col>
@@ -120,7 +124,8 @@ const SignIn = () => {
                                 type='primary'
                                 htmlType='submit'
                                 className='fullContent'
-                                onClick={handleSubmit}>
+                                onClick={handleSubmit}
+                              >
                                 {messages['auth.signin'].toString()}
                               </Button>
                             </Col>

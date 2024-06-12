@@ -8,8 +8,9 @@ import {
   AppThemeProvider,
   AuthRoutes,
 } from './domain';
-import {BrowserRouter} from 'react-router-dom';
-import AuthProvider from './pages/auth/context';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthProvider } from "src/pages/auth/context/AuthContext";
+
 
 const App = () => {
   return (

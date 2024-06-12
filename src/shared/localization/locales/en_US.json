@@ -89,14 +89,14 @@
   "validation.passwordRule": "Use 12 or more characters containing uppercase letters, lowercase letters, numbers, and symbols.",
   "validation.emailRule": "Please enter a valid email address!",
   "tab0.sideBarName": "My Club",
-  "tab1.sideBarName": "Clubs management",
+  "tab1.sideBarName": "Club management",
   "trans.sideBarName": "Transactions",
   "Plans.sideBarName": "Plans",
   "Subscriptions.sideBarName": "Subscriptions",
   "Sports.sideBarName": "Sports",
   "tab2.sideBarName": "Users",
-  "tab1.tab11": "Clubs",
-  "tab1.tab12": "Add Club",
+  "tab1.tab11": "My Club",
+  "tab1.tab12": "Add Field",
   "tab1.tab120": "Tab-1-2-0",
   "tab1.tab121": "Tab-1-2-1"
 }

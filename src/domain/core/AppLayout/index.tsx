@@ -1,24 +1,26 @@
-import React, {useEffect} from 'react';
-import {Layout} from 'antd';
-import {useUrlSearchParams} from 'use-url-search-params';
+import React, { useEffect } from 'react';
+import { Layout } from 'antd';
+import { useUrlSearchParams } from 'use-url-search-params';
 import './layout.style.less';
-import {AppContentView} from '../../index';
-import {LayoutType} from '../../../shared/constants/AppEnums';
+import { AppContentView } from '../../index';
+import { LayoutType } from '../../../shared/constants/AppEnums';
 import AppScrollbar from '../AppScrollbar';
 import {
   useLayoutActionsContext,
   useLayoutContext,
 } from '../../utility/AppContextProvider/LayoutContextProvider';
-import {useSidebarActionsContext} from '../../utility/AppContextProvider/SidebarContextProvider';
+import { useSidebarActionsContext } from '../../utility/AppContextProvider/SidebarContextProvider';
 import MiniSidebarToggle from './MiniSidebarToggle';
-import {useSelector} from 'react-redux';
-import {getIsAuthenticated} from 'src/domain/app/redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
+import { getIsAuthenticated } from 'src/domain/app/redux/auth/auth-selectors';
+import { useAuth } from 'src/pages/auth/context/AuthContext';
 
 const AppLayout = () => {
-  const isAuthenticated = useSelector(getIsAuthenticated);
-  const {layoutType}: any = useLayoutContext();
-  const {updateNavStyle}: any = useLayoutActionsContext();
-  const {updateMenuStyle, setSidebarBgImage}: any = useSidebarActionsContext();
+  // const isAuthenticated = useSelector(getIsAuthenticated);
+  const isAuthenticated = useAuth()
+  const { layoutType }: any = useLayoutContext();
+  const { updateNavStyle }: any = useLayoutActionsContext();
+  const { updateMenuStyle, setSidebarBgImage }: any = useSidebarActionsContext();
   const [params] = useUrlSearchParams();
 
   useEffect(() => {
