@@ -3,27 +3,35 @@ import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import { useIntl } from 'react-intl';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import './Clubs.css';
-import { Link } from "react-router-dom";
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { InfoCircleOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import DetModal from './modal';
-import backGroundSignin from '../../../../src/assets/images/backGroundSignin.jpg';
+import axiosInstance from '../../../../src/shared/utils/axios.config'; // Replace with the correct path to your axios instance
 import './elements.css';
 
-interface IClub {
+interface IField {
   id: number;
-  name: string;
-  description: string;
-  location: string;
-  picture: string;
-  isBlocked: boolean;
-  user_id: number;
+  size: number;
+  pic: string | null;
+  description: string | null;
+  duration: string;
+  price: string;
+  type: string;
+  isUnderMaintenance: boolean;
+  start_date: string;
+  end_date: string;
+  sport: {
+    id: number;
+    name: string;
+  };
 }
 
 const ClubList: React.FC = () => {
   const { setBreadcrumb }: any = useBreadcrumbContext();
   const { messages } = useIntl();
+  const [fields, setFields] = useState<IField[]>([]);
+  const [selectedField, setSelectedField] = useState<IField | null>(null);
 
   useEffect(() => {
     setBreadcrumb([
@@ -32,90 +40,67 @@ const ClubList: React.FC = () => {
         url: '/Clubs-Management/Clubs',
       },
     ]);
+    fetchFields(); // Fetch fields when component mounts
   }, []);
 
-  const [clubs, setClubs] = useState<IClub[]>([
-    {
-      id: 1,
-      name: 'Club A',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss.',
-      location: 'City A',
-      picture: backGroundSignin,
-      isBlocked: false,
-      user_id: 1,
-    },
-    {
-      id: 2,
-      name: 'Club B',
-      description: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem.',
-      location: 'City B',
-      picture: backGroundSignin,
-      isBlocked: true,
-      user_id: 2,
-    },
-    {
-      id: 3,
-      name: 'Club C',
-      description: 'At vero eos et accusamus et iusto odio dignissimos.',
-      location: 'City C',
-      picture: backGroundSignin,
-      isBlocked: false,
-      user_id: 3,
-    },
-  ]);
+  const fetchFields = async () => {
+    try {
+      const response = await axiosInstance.get('/field/all');
+      setFields(response.data);
+    } catch (error) {
+      console.error('Error fetching fields:', error);
+    }
+  };
 
-  const [selectedClub, setSelectedClub] = useState<IClub | null>(null);
-
-  const openDetailsPopup = (club: IClub) => {
-    setSelectedClub(club);
+  const openDetailsPopup = (field: IField) => {
+    setSelectedField(field);
   };
 
   const closeModal = () => {
-    setSelectedClub(null);
+    setSelectedField(null);
+  };
+
+  const handleEdit = (field: IField) => {
+    // Handle edit functionality here
+    console.log('Editing field:', field);
+  };
+
+  const handleDelete = (field: IField) => {
+    // Handle delete functionality here
+    console.log('Deleting field:', field);
   };
 
   return (
     <AppPageMetadata title={messages['tab1.tab11'].toString()}>
-      <div className="club-list">
-        <h1 className="page-title">
-          <IntlMessages id="tab1.tab11" />
+      <div className='club-list'>
+        <h1 className='page-title'>
+          <IntlMessages id='tab1.tab11' />
         </h1>
-
-        <div className="container">
-          <Link to="/Clubs-Management/Add-Club">
-            <Button className="btn">Add Club +</Button>
-          </Link>
-        </div>
-        <div className="data-grid">
-          <div className="grid-header">
+        <div className='data-grid'>
+          <div className='grid-header'>
             <div>ID</div>
-            <div>Name</div>
-            <div>Is Blocked</div>
+            <div>Sport</div>
+            <div>Type</div>
+            <div>Under Maintenance</div>
             <div>Actions</div>
           </div>
-          {clubs.map((club) => (
-            <div className="club-item" key={club.id}>
-              <div>{club.id}</div>
-              <div>{club.name}</div>
-              <div>
-                {club.isBlocked ? (
-                  <div className="verification-status not-verified">Blocked</div>
-                ) : (
-                  <div className="verification-status verified">Active</div>
-                )}
-              </div>
-              <div className="actions-column">
-                <Button onClick={() => openDetailsPopup(club)}>
-                  <InfoCircleOutlined />
-                </Button>
+          {fields.map((field) => (
+            <div className='club-item' key={field.id}>
+              <div>{field.id}</div>
+              <div>{field.sport.name}</div>
+              <div>{field.type}</div>
+              <div className='verification-status'>{field.isUnderMaintenance ? 'Yes' : 'No'}</div>
+              <div className='actions-column'>
+                <button onClick={() => handleEdit(field)}>Edit</button>
+                <button onClick={() => handleDelete(field)}>Delete</button>
+                <button onClick={() => openDetailsPopup(field)}>Details</button>
               </div>
             </div>
-
           ))}
         </div>
-        <DetModal club={selectedClub} closeModal={closeModal} />
+        <DetModal field={selectedField} closeModal={closeModal} />
       </div>
-    </AppPageMetadata >
+    </AppPageMetadata>
   );
 };
 

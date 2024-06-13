@@ -21,6 +21,7 @@
 
 .tab12-card .form-group {
   margin-bottom: 24px;
+  width: 100%;
 }
 
 .tab12-card label {
@@ -47,6 +48,7 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
+  margin-left: 150px;
 }
 
 .tab12-card button:hover {
@@ -55,7 +57,7 @@
 }
 
 .tab12-card button:disabled {
-  background-color: #ccc;
+  background-color: rgb(0, 81, 63);
   cursor: not-allowed;
 }
 
