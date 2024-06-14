@@ -22,8 +22,8 @@ interface FieldFormData {
   type: string;
   sport_id: string;
   isUnderMaintenance: boolean;
-  start_date: string;
-  end_date: string;
+  start_date: string | null;
+  end_date: string | null;
 }
 
 interface Sport {
@@ -47,8 +47,8 @@ const AddField: React.FC<ITab12Props> = (props) => {
     type: '',
     sport_id: '',
     isUnderMaintenance: false,
-    start_date: '',
-    end_date: '',
+    start_date: null,
+    end_date: null,
   });
   const [sports, setSports] = useState<Sport[]>([]);
 
@@ -108,21 +108,35 @@ const AddField: React.FC<ITab12Props> = (props) => {
     }));
   };
 
+  const handleTypeSelectChange = (value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      type: value,
+    }));
+  };
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
+    const modifiedFormData = {
+      ...formData,
+      start_date: formData.isUnderMaintenance ? formData.start_date : null,
+      end_date: formData.isUnderMaintenance ? formData.end_date : null,
+    };
+
     try {
-      await axiosInstance.post('/field/add', formData);
+      await axiosInstance.post('/field/add', modifiedFormData);
       // Show success message
       message.success('Field added successfully');
       // Navigate to the club list page
-      navigate('/ClubList');
+      navigate('/Club-Management/Club');
     } catch (error) {
       // Handle error, e.g., show error message
       console.error('Error adding field:', error);
       message.error('Failed to add field');
     }
   };
+
   return (
     <div className="tab12-card">
       <AppPageMetadata title={messages['tab1.tab12'].toString()} />
@@ -154,13 +168,20 @@ const AddField: React.FC<ITab12Props> = (props) => {
         </div>
         <div className="form-group">
           <label htmlFor="type">Type:</label>
-          <input type="text" id="type" name="type" value={formData.type} onChange={handleInputChange} />
+          <Select
+            id="type"
+            value={formData.type}
+            onChange={handleTypeSelectChange}
+            placeholder="Select a type"
+          >
+            <Select.Option value="Natural">Natural</Select.Option>
+            <Select.Option value="Hybrid">Hybrid</Select.Option>
+          </Select>
         </div>
         <div className="form-group">
           <label htmlFor="sport_id">Sport:</label>
           <Select
             id="sport_id"
-            // name="sport_id"
             value={formData.sport_id}
             onChange={(value) => handleSportSelectChange(value.toString())}
             placeholder="Select a sport"
@@ -186,11 +207,11 @@ const AddField: React.FC<ITab12Props> = (props) => {
           <>
             <div className="form-group">
               <label htmlFor="start_date">Start Date:</label>
-              <input type="date" id="start_date" name="start_date" value={formData.start_date} onChange={handleInputChange} />
+              <input type="date" id="start_date" name="start_date" value={formData.start_date ?? ''} onChange={handleInputChange} />
             </div>
             <div className="form-group">
               <label htmlFor="end_date">End Date:</label>
-              <input type="date" id="end_date" name="end_date" value={formData.end_date} onChange={handleInputChange} />
+              <input type="date" id="end_date" name="end_date" value={formData.end_date ?? ''} onChange={handleInputChange} />
             </div>
           </>
         )}

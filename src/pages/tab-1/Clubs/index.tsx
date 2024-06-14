@@ -3,12 +3,13 @@ import AppPageMetadata from 'src/domain/core/AppPageMetadata';
 import { useBreadcrumbContext } from 'src/domain/utility/AppContextProvider/BreadcrumbContextProvider';
 import { useIntl } from 'react-intl';
 import IntlMessages from 'src/domain/utility/IntlMessages';
-import { Link } from 'react-router-dom';
 import { InfoCircleOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, message, Modal, Form, Input, Select } from 'antd';
 import DetModal from './modal';
 import axiosInstance from '../../../../src/shared/utils/axios.config'; // Replace with the correct path to your axios instance
 import './elements.css';
+
+const { Option } = Select;
 
 interface IField {
   id: number;
@@ -27,11 +28,20 @@ interface IField {
   };
 }
 
+interface ISport {
+  id: number;
+  name: string;
+}
+
 const ClubList: React.FC = () => {
   const { setBreadcrumb }: any = useBreadcrumbContext();
   const { messages } = useIntl();
   const [fields, setFields] = useState<IField[]>([]);
+  const [sports, setSports] = useState<ISport[]>([]);
   const [selectedField, setSelectedField] = useState<IField | null>(null);
+  const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+  const [isUnderMaintenance, setIsUnderMaintenance] = useState(false);
+  const [form] = Form.useForm();
 
   useEffect(() => {
     setBreadcrumb([
@@ -41,6 +51,7 @@ const ClubList: React.FC = () => {
       },
     ]);
     fetchFields(); // Fetch fields when component mounts
+    fetchSports(); // Fetch sports when component mounts
   }, []);
 
   const fetchFields = async () => {
@@ -52,22 +63,83 @@ const ClubList: React.FC = () => {
     }
   };
 
+  const fetchSports = async () => {
+    try {
+      const response = await axiosInstance.get('/sport/all');
+      setSports(response.data);
+    } catch (error) {
+      console.error('Error fetching sports:', error);
+    }
+  };
+
   const openDetailsPopup = (field: IField) => {
-    setSelectedField(field);
+    if (!isEditModalVisible) {
+      setSelectedField(field);
+    }
   };
 
   const closeModal = () => {
     setSelectedField(null);
   };
 
-  const handleEdit = (field: IField) => {
-    // Handle edit functionality here
-    console.log('Editing field:', field);
+  const showEditModal = (field: IField) => {
+    setSelectedField(field);
+    setIsEditModalVisible(true);
+    setIsUnderMaintenance(field.isUnderMaintenance);
+    form.setFieldsValue({
+      size: field.size,
+      description: field.description,
+      duration: field.duration,
+      price: field.price,
+      type: field.type,
+      isUnderMaintenance: field.isUnderMaintenance,
+      start_date: field.start_date,
+      end_date: field.end_date,
+      sportId: field.sport.id,
+    });
+  };
+
+  const handleEdit = async (values: any) => {
+    try {
+      const modifiedValues = {
+        ...values,
+        start_date: values.isUnderMaintenance ? values.start_date : null,
+        end_date: values.isUnderMaintenance ? values.end_date : null,
+        sport: { id: values.sportId },
+      };
+
+      await axiosInstance.put(`/field/edit/${selectedField?.id}`, modifiedValues);
+      message.success('Field updated successfully');
+
+      // Update the fields array with the edited field
+      const updatedFields = fields.map((field) =>
+        field.id === selectedField?.id ? { ...field, ...modifiedValues } : field
+      );
+
+      setFields(updatedFields);
+
+      setIsEditModalVisible(false);
+      setSelectedField(null); // Clear selected field
+    } catch (error) {
+      message.error('Failed to update the field');
+      console.error('Error updating field:', error);
+    }
   };
 
   const handleDelete = (field: IField) => {
-    // Handle delete functionality here
-    console.log('Deleting field:', field);
+    Modal.confirm({
+      title: 'Are you sure you want to delete this field?',
+      onOk: async () => {
+        try {
+          await axiosInstance.delete(`/field/delete/${field.id}`);
+          message.success('Field deleted successfully');
+          setFields(fields.filter(f => f.id !== field.id));
+        } catch (error) {
+          message.error('Failed to delete the field');
+          console.error('Error deleting field:', error);
+        }
+      },
+    });
   };
 
   return (
@@ -91,14 +163,82 @@ const ClubList: React.FC = () => {
               <div>{field.type}</div>
               <div className='verification-status'>{field.isUnderMaintenance ? 'Yes' : 'No'}</div>
               <div className='actions-column'>
-                <button onClick={() => handleEdit(field)}>Edit</button>
-                <button onClick={() => handleDelete(field)}>Delete</button>
-                <button onClick={() => openDetailsPopup(field)}>Details</button>
+                <Button onClick={() => showEditModal(field)} icon={<EditOutlined />} />
+                <Button onClick={() => handleDelete(field)} icon={<DeleteOutlined />} />
+                <Button onClick={() => openDetailsPopup(field)} icon={<InfoCircleOutlined />} />
               </div>
             </div>
           ))}
         </div>
-        <DetModal field={selectedField} closeModal={closeModal} />
+        <DetModal field={isEditModalVisible ? null : selectedField} closeModal={closeModal} />
+        <Modal
+          title="Edit Field"
+          visible={isEditModalVisible}
+          onCancel={() => setIsEditModalVisible(false)}
+          footer={null}
+        >
+          <Form
+            form={form}
+            onFinish={handleEdit}
+            layout="vertical"
+            initialValues={{
+              isUnderMaintenance: selectedField?.isUnderMaintenance ?? false,
+            }}
+          >
+            <Form.Item name="size" label="Size" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="description" label="Description">
+              <Input.TextArea />
+            </Form.Item>
+            <Form.Item name="duration" label="Duration" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="price" label="Price" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+            <Form.Item name="type" label="Type" rules={[{ required: true }]}>
+              <Select>
+                <Option value="Natural">Natural</Option>
+                <Option value="Hybrid">Hybrid</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="isUnderMaintenance"
+              label="Under Maintenance"
+              valuePropName="checked"
+            >
+              <Select onChange={(value) => setIsUnderMaintenance(value)}>
+                <Option value={true}>Yes</Option>
+                <Option value={false}>No</Option>
+              </Select>
+            </Form.Item>
+            {isUnderMaintenance && (
+              <>
+                <Form.Item name="start_date" label="Start Date" rules={[{ required: isUnderMaintenance }]}>
+                  <Input type="date" />
+                </Form.Item>
+                <Form.Item name="end_date" label="End Date" rules={[{ required: isUnderMaintenance }]}>
+                  <Input type="date" />
+                </Form.Item>
+              </>
+            )}
+            <Form.Item name="sportId" label="Sport" rules={[{ required: true }]}>
+              <Select>
+                {sports.map((sport) => (
+                  <Option key={sport.id} value={sport.id}>
+                    {sport.name}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item>
+              <Button type="primary" htmlType="submit">
+                Save
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     </AppPageMetadata>
   );
